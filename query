@@ -1,0 +1,18 @@
+CREATE TABLE statusvalue (
+	statusID int PRIMARY KEY AUTO_INCREMENT,
+    statusValue varchar(255)
+);
+INSERT INTO statusvalue (statusValue) VALUES ('Pending');
+INSERT INTO statusvalue (statusValue) VALUES ('Approved');
+INSERT INTO statusvalue (statusValue) VALUES ('Declined');
+
+CREATE TABLE users (
+	userID int PRIMARY KEY AUTO_INCREMENT,
+    user_name varchar(255),
+    user_email varchar(255),
+    user_password text,
+    user_status int,
+	FOREIGN KEY (user_status) REFERENCES statusvalue(statusID),
+    updated_at timestamp,
+    created_at timestamp DEFAULT CURRENT_TIMESTAMP
+);
